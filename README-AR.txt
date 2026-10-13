@@ -1,20 +1,16 @@
-CAIRO SCIVERSE — الملفات كلها في مستوى واحد بدون مجلدات
+CAIRO SCIVERSE — النسخة المعدلة للربط بـ Supabase الجديد
 
-الملفات:
-- index.html: موقع Cairo SciVerse الأصلي.
-- dashboard.html: لوحة التحكم المربوطة بـ Supabase.
-- supabase-schema.sql: كود إنشاء الجداول وسياسات حماية البيانات.
-- باقي الملفات: صور وخطوط ومكتبات محلية يحتاجها الموقع.
+تم تحديث index.html لاستخدام مشروع Supabase:
+https://tithatfxtifjfamkmdcn.supabase.co
 
-طريقة التشغيل:
-1) شغّل supabase-schema.sql داخل Supabase > SQL Editor > New query.
-2) افتح dashboard.html، وأدخل Project URL وPublishable/anon key من إعدادات Supabase.
-3) أنشئ حسابًا أو سجّل الدخول. يمكن إضافة المنتجات والطلبات من لوحة التحكم.
-4) ارفع كل الملفات الموجودة في هذا المجلد إلى GitHub بنفس المستوى (root). لا ترفع ZIP نفسه فقط.
-5) في Vercel اختر مشروعًا من نوع Other/Static إذا كنت تنشر هذه النسخة المسطحة، وتأكد أن index.html في جذر المستودع.
+الخطوات:
+1) افتح Supabase > SQL Editor > New query.
+2) افتح supabase-schema.sql، انسخ محتواه بالكامل، الصقه في SQL Editor واضغط Run.
+3) ارفع كل محتويات هذا المجلد إلى جذر مستودع GitHub (Root)، وليس ملف ZIP فقط.
+4) إذا كان Vercel متصلًا بمستودع GitHub، انتظر انتهاء النشر ثم افتح الموقع.
 
-ملاحظات:
-- الصفحة الأصلية تستخدم مكتبات CDN؛ يتطلب تحميلها اتصال إنترنت.
-- dashboard.html تستخدم المفتاح العام فقط. لا تضع service_role/secret key في HTML.
-- جداول المنتجات والطلبات محمية بـ Row Level Security؛ كل مستخدم يرى سجلاته فقط.
-- لوحة التحكم منفصلة في dashboard.html حتى لا تغيّر الصفحة الأصلية index.html.
+تنبيه:
+- مفتاح sb_publishable_ مستخدم في index.html وهو مفتاح واجهة عام، وليس secret/service_role.
+- يجب ضبط سياسات المصادقة وRLS قبل إضافة بيانات حقيقية.
+- ملف SQL ينشئ الجداول الأساسية فقط ولا يضيف محتوى المواد أو الامتحانات أو الأخبار.
+- dashboard.html لوحة منفصلة للمنتجات والطلبات، وتطلب Project URL والمفتاح من داخل الصفحة. ملف SQL الأصلي للمنتجات والطلبات كان منفصلًا؛ تمت إضافة الجداول التعليمية إلى schema.
